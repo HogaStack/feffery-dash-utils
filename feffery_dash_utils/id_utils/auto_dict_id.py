@@ -23,7 +23,7 @@ class _UniqueDictIdEnumMeta(EnumMeta):
     def __new__(mcs, name: str, bases: tuple, attrs: Dict[str, Any]) -> Type:
         # 获取模块名和完整类名
         module = attrs.get('__module__', '__main__')
-        full_class_name = f'{module}-{name}'
+        full_class_name = f'{module}-{name}'.replace('.', '-')
         # 临时存储处理后的成员
         processed_members = {}
         match_values = {}
