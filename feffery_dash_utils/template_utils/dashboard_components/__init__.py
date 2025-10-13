@@ -270,52 +270,57 @@ def index_card(
         Component: 构造完成的指标卡片
     """
 
-    return html.Div(
-        fac.AntdSpace(
+    content = [
+        fac.AntdFlex(
             [
                 fac.AntdFlex(
                     [
-                        fac.AntdFlex(
-                            [
-                                index_name,
-                                (
-                                    index_description
-                                    and fac.AntdTooltip(
-                                        fac.AntdIcon(
-                                            icon='antd-info-circle',
-                                        ),
-                                        title=index_description,
-                                    )
+                        index_name,
+                        (
+                            index_description
+                            and fac.AntdTooltip(
+                                fac.AntdIcon(
+                                    icon='antd-info-circle',
                                 ),
-                            ],
-                            justify='space-between',
-                            className=indexNameClassName,
-                            style={
-                                **dict(
-                                    color='rgba(0, 0, 0, 0.65)', fontSize=16
-                                ),
-                                **(indexNameStyle or {}),
-                            },
+                                title=index_description,
+                            )
                         ),
-                        fac.AntdText(index_value, style=style(fontSize=28)),
                     ],
-                    vertical=True,
                     justify='space-between',
-                    style=style(height=64, overflowY='hidden'),
-                ),
-                html.Div(
-                    html.Div(extra_content, style=style(height='100%')),
-                    className=extraContentClassName,
+                    className=indexNameClassName,
                     style={
                         **dict(
-                            height=56,
-                            marginBottom=12,
-                            overflowX='hidden',
-                            overflowY='hidden',
+                            color='rgba(0, 0, 0, 0.65)', fontSize=16
                         ),
-                        **(extraContentStyle or {}),
+                        **(indexNameStyle or {}),
                     },
                 ),
+                fac.AntdText(index_value, style=style(fontSize=28)),
+            ],
+            vertical=True,
+            justify='space-between',
+            style=style(height=64, overflowY='hidden'),
+        )
+    ]
+    if extra_content is not None:
+        content.append(
+            html.Div(
+                html.Div(extra_content, style=style(height='100%')),
+                className=extraContentClassName,
+                style={
+                    **dict(
+                        height=56,
+                        marginBottom=12,
+                        overflowX='hidden',
+                        overflowY='hidden',
+                    ),
+                    **(extraContentStyle or {}),
+                },
+            )
+        )
+    if footer_content is not None:
+        content.extend(
+            [
                 fac.AntdDivider(style=style(marginTop=0, marginBottom=0)),
                 html.Div(
                     footer_content,
@@ -328,8 +333,12 @@ def index_card(
                         ),
                         **(footerContentStyle or {}),
                     },
-                ),
-            ],
+                )
+            ]
+        )
+    return html.Div(
+        fac.AntdSpace(
+            content,
             size=0,
             direction='vertical',
             style=style(width='100%'),
