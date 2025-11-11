@@ -30,13 +30,13 @@ def welcome_card(
         description (Union[_Component, Sequence[_Component]], optional): 标题下方辅助描述元素. Defaults to None.
         avatar (_Component, optional): 头像元素. Defaults to None.
         extra (_Component, optional): 额外元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        titleStyle (dict, optional): 标题样式. Defaults to None.
-        titleClassName (str, optional): 标题类名. Defaults to None.
-        descriptionStyle (dict, optional): 描述样式. Defaults to None.
-        descriptionClassName (str, optional): 描述类名. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        titleStyle (Union[dict, None], optional): 标题样式. Defaults to None.
+        titleClassName (Union[str, None], optional): 标题类名. Defaults to None.
+        descriptionStyle (Union[dict, None], optional): 描述样式. Defaults to None.
+        descriptionClassName (Union[str, None], optional): 描述类名. Defaults to None.
 
     Returns:
         Component: 构造完成的欢迎卡片
@@ -103,10 +103,10 @@ def blank_card(
 
     Args:
         children (Union[_Component, Sequence[_Component]], optional): 子元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        backgroundImage (str, optional): 背景图url. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        backgroundImage (Union[str, None], optional): 背景图url. Defaults to None.
 
     Returns:
         Component: 构造完成的卡片
@@ -160,13 +160,13 @@ def simple_chart_card(
         chart (Union[_Component, Sequence[_Component]], optional): 图表元素. Defaults to None.
         extra (_Component, optional): 额外元素. Defaults to None.
         height (Union[int, float, str], optional): 卡片高度. Defaults to 300.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        titleStyle (dict, optional): 标题样式. Defaults to None.
-        titleClassName (str, optional): 标题类名. Defaults to None.
-        descriptionStyle (dict, optional): 描述样式. Defaults to None.
-        descriptionClassName (str, optional): 描述类名. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        titleStyle (Union[dict, None], optional): 标题样式. Defaults to None.
+        titleClassName (Union[str, None], optional): 标题类名. Defaults to None.
+        descriptionStyle (Union[dict, None], optional): 描述样式. Defaults to None.
+        descriptionClassName (Union[str, None], optional): 描述类名. Defaults to None.
 
     Returns:
         Component: 构造完成的简单图表卡片
@@ -258,15 +258,15 @@ def index_card(
         index_value (Union[_Component, Sequence[_Component]], optional): 指标值元素. Defaults to None.
         extra_content (Union[_Component, Sequence[_Component]], optional): 额外元素. Defaults to None.
         footer_content (Union[_Component, Sequence[_Component]], optional): 底部元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        indexNameStyle (dict, optional): 指标名称样式. Defaults to None.
-        indexNameClassName (str, optional): 指标名称类名. Defaults to None.
-        extraContentStyle (dict, optional): 额外元素样式. Defaults to None.
-        extraContentClassName (str, optional): 额外元素类名. Defaults to None.
-        footerContentStyle (dict, optional): 底部元素样式. Defaults to None.
-        footerContentClassName (str, optional): 底部元素类名. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        indexNameStyle (Union[dict, None], optional): 指标名称样式. Defaults to None.
+        indexNameClassName (Union[str, None], optional): 指标名称类名. Defaults to None.
+        extraContentStyle (Union[dict, None], optional): 额外元素样式. Defaults to None.
+        extraContentClassName (Union[str, None], optional): 额外元素类名. Defaults to None.
+        footerContentStyle (Union[dict, None], optional): 底部元素样式. Defaults to None.
+        footerContentClassName (Union[str, None], optional): 底部元素类名. Defaults to None.
 
     Returns:
         Component: 构造完成的指标卡片

@@ -28,10 +28,10 @@ class Translator:
         Args:
             translations (Union[str, list])：单个本地化配置文件路径，或多个本地化配置文件路径列表
             translations_encoding (str)：本地化配置文件编码 Defaults to 'utf-8'
-            root_locale (str)：手动设置的根语言环境类型 Defaults to None
+            root_locale (Union[str, None], optional)：手动设置的根语言环境类型 Defaults to None
             cookie_name (str)：存储当前语言环境类型的 cookie 名称 Defaults to 'dash-i18n'
-            get_current_locale (Optional[callable]): 自定义函数或方法，返回值表示当前语言环境类型
-            force_check_content_translator (bool): 是否针对文案翻译内容存在性进行检查
+            get_current_locale (Optional[Callable]): 自定义函数或方法，返回值表示当前语言环境类型
+            force_check_content_translator (bool, optional): 是否针对文案翻译内容存在性进行检查
         Returns:
             None
         """
@@ -62,7 +62,7 @@ class Translator:
 
         Args:
             input_content (str): 转换前文案内容
-            source_locale (str, optional): 手动控制源语种 Defaults to None
+            source_locale (Union[str, None], optional): 手动控制源语种 Defaults to None
             locale_topic (str, optional): 手动控制目标语种主题 Defaults to '_default'
 
         Returns:

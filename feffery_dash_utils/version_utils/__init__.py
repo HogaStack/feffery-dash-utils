@@ -21,8 +21,8 @@ def check_python_version(
     """检查当前环境中的Python版本是否符合要求
 
     Args:
-        min_version (str, optional): 要求的Python版本下限，如3.8. Defaults to None.
-        max_version (str, optional): 要求的Python版本上限，如3.12. Defaults to None.
+        min_version (Union[str, None], optional): 要求的Python版本下限，如3.8. Defaults to None.
+        max_version (Union[str, None], optional): 要求的Python版本上限，如3.12. Defaults to None.
     """
 
     # 检查当前环境Python版本是否符合要求
@@ -75,7 +75,7 @@ def check_dependencies_version(
     """检查当前环境中的若干依赖库版本是否符合要求
 
     Args:
-        rules (List[DependencyRule]): 依赖库版本检查规则
+        rules (Union[List[DependencyRule], None]): 依赖库版本检查规则
     """
 
     rules = rules or []
