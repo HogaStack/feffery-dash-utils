@@ -1,5 +1,5 @@
-from enum import EnumMeta, Enum
-from typing import Any, cast, Dict, Type
+from enum import EnumMeta, Enum, _EnumDict
+from typing import Any, cast, Dict, Tuple, Type
 from .common import Auto, generate_unique_id
 
 
@@ -20,7 +20,7 @@ class _UniqueDictIdEnumMeta(EnumMeta):
     元类处理自动值生成和唯一性检查
     """
 
-    def __new__(mcs, name: str, bases: tuple, attrs: Dict[str, Any]) -> Type:
+    def __new__(mcs, name: str, bases: tuple, attrs: _EnumDict) -> Type:
         # 获取模块名和完整类名
         module = attrs.get('__module__', '__main__')
         full_class_name = f'{module}-{name}'.replace('.', '-')
@@ -45,7 +45,11 @@ class _UniqueDictIdEnumMeta(EnumMeta):
                     raise ValueError(
                         f'❌ ID冲突! {full_class_name}.{member_name} 与 {existing[0]}.{existing[1]} 使用了相同的ID: {processed_value_str}'
                     )
-                auto_dict_id_registry[processed_value_str] = (module, name, member_name)
+                auto_dict_id_registry[processed_value_str] = (
+                    module,
+                    name,
+                    member_name,
+                )
                 processed_members[member_name] = processed_value
                 match_values.update(new_match_values)
 
@@ -61,7 +65,7 @@ class _UniqueDictIdEnumMeta(EnumMeta):
         member_name: str,
         value_dict: dict,
         match_values: Dict[str, str],
-    ) -> Dict[str, Any]:
+    ) -> Tuple[Dict[Any, Any], Dict[Any, Any]]:
         """
         处理字典值
 

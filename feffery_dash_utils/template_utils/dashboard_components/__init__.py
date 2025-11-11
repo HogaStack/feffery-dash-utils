@@ -1,41 +1,42 @@
-from dash import html
-from typing import Union
 import feffery_antd_components as fac
-from feffery_dash_utils.style_utils import style
+from dash import html
 from dash.development.base_component import Component
+from feffery_dash_utils.style_utils import style
+from typing import List, Sequence, Union
 
-__ALL__ = ['welcome_card', 'blank_card', 'simple_chart_card', 'index_card']
 
-_Component = Union[Component, str, int, float, list]
+__all__ = ['welcome_card', 'blank_card', 'simple_chart_card', 'index_card']
+
+_Component = Union[Component, str, int, float, None]
 
 
 def welcome_card(
-    title: _Component = None,
-    description: _Component = None,
+    title: Union[_Component, Sequence[_Component]] = None,
+    description: Union[_Component, Sequence[_Component]] = None,
     avatar: _Component = None,
     extra: _Component = None,
-    root_id: Union[str, dict] = None,
-    rootStyle: dict = None,
-    rootClassName: str = None,
-    titleStyle: dict = None,
-    titleClassName: str = None,
-    descriptionStyle: dict = None,
-    descriptionClassName: str = None,
+    root_id: Union[str, dict, None] = None,
+    rootStyle: Union[dict, None] = None,
+    rootClassName: Union[str, None] = None,
+    titleStyle: Union[dict, None] = None,
+    titleClassName: Union[str, None] = None,
+    descriptionStyle: Union[dict, None] = None,
+    descriptionClassName: Union[str, None] = None,
 ) -> Component:
     """欢迎卡片
 
     Args:
-        title (Component, optional): 标题元素. Defaults to None.
-        description (Component, optional): 标题下方辅助描述元素. Defaults to None.
-        avatar (Component, optional): 头像元素. Defaults to None.
-        extra (Component, optional): 额外元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        titleStyle (dict, optional): 标题样式. Defaults to None.
-        titleClassName (str, optional): 标题类名. Defaults to None.
-        descriptionStyle (dict, optional): 描述样式. Defaults to None.
-        descriptionClassName (str, optional): 描述类名. Defaults to None.
+        title (Union[_Component, Sequence[_Component]], optional): 标题元素. Defaults to None.
+        description (Union[_Component, Sequence[_Component]], optional): 标题下方辅助描述元素. Defaults to None.
+        avatar (_Component, optional): 头像元素. Defaults to None.
+        extra (_Component, optional): 额外元素. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        titleStyle (Union[dict, None], optional): 标题样式. Defaults to None.
+        titleClassName (Union[str, None], optional): 标题类名. Defaults to None.
+        descriptionStyle (Union[dict, None], optional): 描述样式. Defaults to None.
+        descriptionClassName (Union[str, None], optional): 描述类名. Defaults to None.
 
     Returns:
         Component: 构造完成的欢迎卡片
@@ -87,25 +88,25 @@ def welcome_card(
             ),
             **(rootStyle or {}),
         },
-        **(dict(id=root_id) if root_id else {}),
+        id=root_id,
     )
 
 
 def blank_card(
-    children: _Component = None,
-    root_id: Union[str, dict] = None,
-    rootStyle: dict = None,
-    rootClassName: str = None,
-    backgroundImage: str = None,
+    children: Union[_Component, Sequence[_Component]] = None,
+    root_id: Union[str, dict, None] = None,
+    rootStyle: Union[dict, None] = None,
+    rootClassName: Union[str, None] = None,
+    backgroundImage: Union[str, None] = None,
 ) -> Component:
     """空白卡片
 
     Args:
-        children (Component, optional): 子元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        backgroundImage (str, optional): 背景图url. Defaults to None.
+        children (Union[_Component, Sequence[_Component]], optional): 子元素. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        backgroundImage (Union[str, None], optional): 背景图url. Defaults to None.
 
     Returns:
         Component: 构造完成的卡片
@@ -133,39 +134,39 @@ def blank_card(
                 else {}
             ),
         },
-        **(dict(id=root_id) if root_id else {}),
+        id=root_id,
     )
 
 
 def simple_chart_card(
-    title: _Component = None,
-    description: _Component = None,
-    chart: _Component = None,
+    title: Union[_Component, Sequence[_Component]] = None,
+    description: Union[_Component, Sequence[_Component]] = None,
+    chart: Union[_Component, Sequence[_Component]] = None,
     extra: _Component = None,
     height: Union[int, float, str] = 300,
-    root_id: Union[str, dict] = None,
-    rootStyle: dict = None,
-    rootClassName: str = None,
-    titleStyle: dict = None,
-    titleClassName: str = None,
-    descriptionStyle: dict = None,
-    descriptionClassName: str = None,
+    root_id: Union[str, dict, None] = None,
+    rootStyle: Union[dict, None] = None,
+    rootClassName: Union[str, None] = None,
+    titleStyle: Union[dict, None] = None,
+    titleClassName: Union[str, None] = None,
+    descriptionStyle: Union[dict, None] = None,
+    descriptionClassName: Union[str, None] = None,
 ) -> Component:
     """简单图表卡片
 
     Args:
-        title (Component, optional): 标题元素. Defaults to None.
-        description (Component, optional): 标题右侧辅助描述元素. Defaults to None.
-        chart (Component, optional): 图表元素. Defaults to None.
-        extra (Component, optional): 额外元素. Defaults to None.
+        title (Union[_Component, Sequence[_Component]], optional): 标题元素. Defaults to None.
+        description (Union[_Component, Sequence[_Component]], optional): 标题右侧辅助描述元素. Defaults to None.
+        chart (Union[_Component, Sequence[_Component]], optional): 图表元素. Defaults to None.
+        extra (_Component, optional): 额外元素. Defaults to None.
         height (Union[int, float, str], optional): 卡片高度. Defaults to 300.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        titleStyle (dict, optional): 标题样式. Defaults to None.
-        titleClassName (str, optional): 标题类名. Defaults to None.
-        descriptionStyle (dict, optional): 描述样式. Defaults to None.
-        descriptionClassName (str, optional): 描述类名. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        titleStyle (Union[dict, None], optional): 标题样式. Defaults to None.
+        titleClassName (Union[str, None], optional): 标题类名. Defaults to None.
+        descriptionStyle (Union[dict, None], optional): 描述样式. Defaults to None.
+        descriptionClassName (Union[str, None], optional): 描述类名. Defaults to None.
 
     Returns:
         Component: 构造完成的简单图表卡片
@@ -190,13 +191,14 @@ def simple_chart_card(
                                     },
                                 ),
                                 (
-                                    description
-                                    and fac.AntdText(
+                                    fac.AntdText(
                                         description,
                                         type='secondary',
                                         className=descriptionClassName,
                                         style=descriptionStyle,
                                     )
+                                    if description
+                                    else None
                                 ),
                             ],
                             size=4,
@@ -228,70 +230,69 @@ def simple_chart_card(
             ),
             **(rootStyle or {}),
         },
-        **(dict(id=root_id) if root_id else {}),
+        id=root_id,
     )
 
 
 def index_card(
     index_name: _Component = None,
-    index_description: _Component = None,
-    index_value: _Component = None,
-    extra_content: _Component = None,
-    footer_content: _Component = None,
-    root_id: Union[str, dict] = None,
-    rootStyle: dict = None,
-    rootClassName: str = None,
-    indexNameStyle: dict = None,
-    indexNameClassName: str = None,
-    extraContentStyle: dict = None,
-    extraContentClassName: str = None,
-    footerContentStyle: dict = None,
-    footerContentClassName: str = None,
+    index_description: Union[_Component, Sequence[_Component]] = None,
+    index_value: Union[_Component, Sequence[_Component]] = None,
+    extra_content: Union[_Component, Sequence[_Component]] = None,
+    footer_content: Union[_Component, Sequence[_Component]] = None,
+    root_id: Union[str, dict, None] = None,
+    rootStyle: Union[dict, None] = None,
+    rootClassName: Union[str, None] = None,
+    indexNameStyle: Union[dict, None] = None,
+    indexNameClassName: Union[str, None] = None,
+    extraContentStyle: Union[dict, None] = None,
+    extraContentClassName: Union[str, None] = None,
+    footerContentStyle: Union[dict, None] = None,
+    footerContentClassName: Union[str, None] = None,
 ) -> Component:
     """指标卡片
 
     Args:
-        index_name (Component, optional): 指标名称. Defaults to None.
-        index_description (Component, optional): 指标描述内容. Defaults to None.
-        index_value (Component, optional): 指标值元素. Defaults to None.
-        extra_content (Component, optional): 额外元素. Defaults to None.
-        footer_content (Component, optional): 底部元素. Defaults to None.
-        root_id (Union[str, dict], optional): 根元素id. Defaults to None.
-        rootStyle (dict, optional): 根元素样式. Defaults to None.
-        rootClassName (str, optional): 根元素类名. Defaults to None.
-        indexNameStyle (dict, optional): 指标名称样式. Defaults to None.
-        indexNameClassName (str, optional): 指标名称类名. Defaults to None.
-        extraContentStyle (dict, optional): 额外元素样式. Defaults to None.
-        extraContentClassName (str, optional): 额外元素类名. Defaults to None.
-        footerContentStyle (dict, optional): 底部元素样式. Defaults to None.
-        footerContentClassName (str, optional): 底部元素类名. Defaults to None.
+        index_name (_Component, optional): 指标名称. Defaults to None.
+        index_description (Union[_Component, Sequence[_Component]], optional): 指标描述内容. Defaults to None.
+        index_value (Union[_Component, Sequence[_Component]], optional): 指标值元素. Defaults to None.
+        extra_content (Union[_Component, Sequence[_Component]], optional): 额外元素. Defaults to None.
+        footer_content (Union[_Component, Sequence[_Component]], optional): 底部元素. Defaults to None.
+        root_id (Union[str, dict, None], optional): 根元素id. Defaults to None.
+        rootStyle (Union[dict, None], optional): 根元素样式. Defaults to None.
+        rootClassName (Union[str, None], optional): 根元素类名. Defaults to None.
+        indexNameStyle (Union[dict, None], optional): 指标名称样式. Defaults to None.
+        indexNameClassName (Union[str, None], optional): 指标名称类名. Defaults to None.
+        extraContentStyle (Union[dict, None], optional): 额外元素样式. Defaults to None.
+        extraContentClassName (Union[str, None], optional): 额外元素类名. Defaults to None.
+        footerContentStyle (Union[dict, None], optional): 底部元素样式. Defaults to None.
+        footerContentClassName (Union[str, None], optional): 底部元素类名. Defaults to None.
 
     Returns:
         Component: 构造完成的指标卡片
     """
 
-    content = [
+    content: List[_Component] = [
         fac.AntdFlex(
             [
                 fac.AntdFlex(
                     [
                         index_name,
                         (
-                            index_description
-                            and fac.AntdTooltip(
+                            fac.AntdTooltip(
                                 fac.AntdIcon(
                                     icon='antd-info-circle',
                                 ),
                                 title=index_description,
                             )
+                            if index_description
+                            else None
                         ),
                     ],
                     justify='space-between',
                     className=indexNameClassName,
                     style={
-                        **dict(
-                            color='rgba(0, 0, 0, 0.65)', fontSize=16
-                        ),
+                        **dict(color='rgba(0, 0, 0, 0.65)', fontSize=16),
                         **(indexNameStyle or {}),
                     },
                 ),
@@ -333,7 +334,7 @@ def index_card(
                         ),
                         **(footerContentStyle or {}),
                     },
-                )
+                ),
             ]
         )
     return html.Div(
@@ -354,5 +355,5 @@ def index_card(
             ),
             **(rootStyle or {}),
         },
-        **(dict(id=root_id) if root_id else {}),
+        id=root_id,
     )

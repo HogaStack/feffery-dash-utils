@@ -1,8 +1,6 @@
 from copy import deepcopy
 from typing import Union, Literal
 
-__all__ = ['TreeManager']
-
 
 class TreeManager:
     """
@@ -309,7 +307,7 @@ class TreeManager:
         input_object: Union[dict, list],
         node_key: str,
         data_type: Literal['tree', 'menu'] = 'tree',
-    ) -> Union[list, dict]:
+    ) -> Union[list, dict, None]:
         """
         查询key值等于node_key的节点
 
