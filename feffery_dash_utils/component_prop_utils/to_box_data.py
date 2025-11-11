@@ -1,7 +1,5 @@
 import numpy as np
 
-__ALL__ = ['to_box_data']
-
 
 def to_box_data(raw_data) -> dict:
     """将原始数组转换为适用于fact.AntdBox参数data数据项格式的结果

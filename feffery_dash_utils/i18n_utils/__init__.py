@@ -1,8 +1,10 @@
 import json
 import logging
-from typing import Union
 from flask import request
-from typing import Optional
+from typing import Callable, Optional, Union
+
+
+__all__ = ['Translator']
 
 
 logger = logging.getLogger('i18n')
@@ -15,9 +17,9 @@ class Translator:
         self,
         translations: Union[str, list],
         translations_encoding: str = 'utf-8',
-        root_locale: str = None,
+        root_locale: Union[str, None] = None,
         cookie_name: str = 'dash-i18n',
-        get_current_locale: Optional[callable] = None,
+        get_current_locale: Optional[Callable] = None,
         force_check_content_translator: bool = True,
     ) -> None:
         """
@@ -52,7 +54,7 @@ class Translator:
     def t(
         self,
         input_content: str,
-        source_locale: str = None,
+        source_locale: Union[str, None] = None,
         locale_topic: str = '_default',
     ) -> str:
         """

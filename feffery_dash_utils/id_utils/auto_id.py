@@ -1,5 +1,5 @@
-from enum import Enum, EnumMeta
-from typing import Any, cast, Dict, Type
+from enum import Enum, EnumMeta, _EnumDict
+from typing import cast, Dict, Type
 from .common import Auto, generate_unique_id
 
 # 全局id注册表 {id_value: (module_name, enum_class_name, member_name)}
@@ -9,7 +9,7 @@ auto_id_registry: Dict[str, tuple] = {}
 class _UniqueIdEnumMeta(EnumMeta):
     """自定义元类，确保所有枚举成员具有唯一id值"""
 
-    def __new__(mcs, name: str, bases: tuple, attrs: Dict[str, Any]) -> Type:
+    def __new__(mcs, name: str, bases: tuple, attrs: _EnumDict) -> Type:
         # 获取模块名和完整类名
         module = attrs.get('__module__', '__main__')
         full_class_name = f'{module}-{name}'.replace('.', '-')

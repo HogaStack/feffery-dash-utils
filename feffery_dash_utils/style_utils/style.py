@@ -1,8 +1,9 @@
 import inspect
 from cssutils import parseString
+from typing import Union
 
 def style(
-    rawCSS: str = None,
+    rawCSS: Union[str, None] = None,
     alignContent=None,
     alignItems=None,
     alignSelf=None,
@@ -464,13 +465,19 @@ def style(
 
     frame = inspect.currentframe()
     try:
-        argvalues = inspect.getargvalues(frame)
-        args_dict = dict(argvalues.locals)
-        kwargs = args_dict.pop('kwargs', {})
-        # 去除None值属性
-        args = {key: value for key, value in args_dict.items() if value is not None and key not in ['rawCSS', 'frame', 'argvalues', 'args_dict']}
+        if frame is not None:
+            argvalues = inspect.getargvalues(frame)
+            args_dict = dict(argvalues.locals)
+            kwargs = args_dict.pop('kwargs', {})
+            # 去除None值属性
+            args = {key: value for key, value in args_dict.items() if value is not None and key not in ['rawCSS', 'frame', 'argvalues', 'args_dict']}
+        else:
+            # 如果无法获取帧信息，则使用空字典
+            args = {}
+            kwargs = {}
     finally:
-        del frame
+        if frame is not None:
+            del frame
 
     # 处理针对rawCSS的自动解析
     args_from_css = {}

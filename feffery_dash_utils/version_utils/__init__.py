@@ -1,11 +1,12 @@
 import platform
 from importlib import metadata
-from packaging.version import Version
-from typing import List, TypedDict, Optional
-from packaging.specifiers import SpecifierSet
 from packaging.requirements import Requirement, InvalidRequirement
+from packaging.specifiers import SpecifierSet
+from packaging.version import Version
+from typing import List, Optional, TypedDict, Union
 
-__ALL__ = ['check_python_version', 'check_dependencies_version']
+
+__all__ = ['check_python_version', 'check_dependencies_version']
 
 
 class PythonVersionError(Exception):
@@ -15,7 +16,7 @@ class PythonVersionError(Exception):
 
 
 def check_python_version(
-    min_version: str = None, max_version: str = None
+    min_version: Union[str, None] = None, max_version: Union[str, None] = None
 ) -> None:
     """检查当前环境中的Python版本是否符合要求
 
@@ -68,8 +69,8 @@ class DependencyRule(TypedDict):
 
 
 def check_dependencies_version(
-    rules: List[DependencyRule] = None,
-    requirements_file: str = None,
+    rules: Union[List[DependencyRule], None] = None,
+    requirements_file: Union[str, None] = None,
 ) -> None:
     """检查当前环境中的若干依赖库版本是否符合要求
 
@@ -116,7 +117,9 @@ def check_dependencies_version(
         # 若当前依赖库配置了明确的版本规则
         if rule.get('specifier'):
             # 检查当前依赖库版本是否符合明确的规则要求
-            if version not in SpecifierSet(rule['specifier'], prereleases=True):
+            if version not in SpecifierSet(
+                rule['specifier'] or '', prereleases=True
+            ):
                 raise DependencyVersionError(
                     f'Package {rule["name"]} version must match {rule["specifier"]}'
                 )
