@@ -45,7 +45,7 @@ def test_to_box_data_empty_list():
     raw_data = []
 
     # 验证会抛出 ValueError 异常
-    with pytest.raises(ValueError, match="输入数组不能为空"):
+    with pytest.raises(ValueError, match='输入数组不能为空'):
         to_box_data(raw_data)
 
 
@@ -55,7 +55,9 @@ def test_to_box_data_single_value():
     raw_data = [5]
 
     # 验证会抛出 ValueError 异常
-    with pytest.raises(ValueError, match="输入数组必须包含至少两个元素才能计算箱线图数据"):
+    with pytest.raises(
+        ValueError, match='输入数组必须包含至少两个元素才能计算箱线图数据'
+    ):
         to_box_data(raw_data)
 
 
