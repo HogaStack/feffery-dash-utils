@@ -14,7 +14,7 @@ class TestVersionUtils:
     def test_check_python_version_valid(self):
         """测试有效的Python版本检查"""
         # 这应该不会抛出异常
-        check_python_version(min_version='3.8', max_version='3.12')
+        check_python_version(min_version='3.8', max_version='3.13')
 
     def test_check_python_version_invalid_min(self):
         """测试无效的Python最小版本检查"""
