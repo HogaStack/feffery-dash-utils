@@ -10,25 +10,48 @@ def to_box_data(raw_data) -> dict:
     Returns:
         dict: 转化结果数据项
     """
-
+    
     # 转换为numpy数组
     data = np.array(raw_data)
-
+    
+    # 处理空数组的情况
+    if len(data) == 0:
+        return {
+            'low': 0,
+            'q1': 0,
+            'median': 0,
+            'q3': 0,
+            'high': 0,
+            'outliers': [],
+        }
+    
+    # 处理单个值的情况
+    if len(data) == 1:
+        value = data[0]
+        return {
+            'low': value,
+            'q1': value,
+            'median': value,
+            'q3': value,
+            'high': value,
+            'outliers': [],
+        }
+    
     # 计算四分位数
     q1 = np.percentile(data, 25)
     q2 = np.median(data)
     q3 = np.percentile(data, 75)
-
+    
     # 计算四分位距
     iqr = q3 - q1
-
+    
     # 计算上下边界
     lower_bound = q1 - 1.5 * iqr
     upper_bound = q3 + 1.5 * iqr
-
+    
     # 提取异常值
     outliers = data[(data < lower_bound) | (data > upper_bound)]
-
+    
     # 返回适用于fact.AntdBox参数data数据项格式的结果
     return {
         'low': lower_bound,
