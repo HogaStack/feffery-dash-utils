@@ -39,6 +39,8 @@ jobs:
     - name: Run tests
       run: |
         python -m pytest tests/ -v
+      env:
+        DISPLAY: :99
   
   lint-format:
     runs-on: ubuntu-latest
