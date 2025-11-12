@@ -1,2 +1,10 @@
+build
+cssutils
+dash[testing]
 DrissionPage
-flask
+feffery_antd_charts>=0.2.3
+feffery_antd_components>=0.4.0
+feffery_utils_components>=0.3.3
+numpy
+pytest>=6.0
+twine
