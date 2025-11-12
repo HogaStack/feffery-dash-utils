@@ -32,7 +32,6 @@ jobs:
         sudo apt-get install -y chromium-browser chromium-chromedriver xvfb
 
     - name: Start virtual display
-      if: matrix.os == 'ubuntu-latest'
       run: |
         export DISPLAY=:99
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
