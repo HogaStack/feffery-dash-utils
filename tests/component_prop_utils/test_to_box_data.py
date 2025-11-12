@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 from feffery_dash_utils.component_prop_utils import to_box_data
 
 
@@ -39,39 +40,23 @@ def test_to_box_data_with_outliers():
 
 
 def test_to_box_data_empty_list():
-    """测试空列表输入"""
+    """测试空列表输入会抛出异常"""
     # 准备空列表数据
     raw_data = []
 
-    # 调用函数
-    result = to_box_data(raw_data)
-
-    # 验证结果
-    assert isinstance(result, dict)
-    assert result['low'] == 0
-    assert result['q1'] == 0
-    assert result['median'] == 0
-    assert result['q3'] == 0
-    assert result['high'] == 0
-    assert result['outliers'] == []
+    # 验证会抛出 ValueError 异常
+    with pytest.raises(ValueError, match="输入数组不能为空"):
+        to_box_data(raw_data)
 
 
 def test_to_box_data_single_value():
-    """测试单个值输入"""
+    """测试单个值输入会抛出异常"""
     # 准备单个值数据
     raw_data = [5]
 
-    # 调用函数
-    result = to_box_data(raw_data)
-
-    # 验证结果
-    assert isinstance(result, dict)
-    assert result['median'] == 5
-    assert result['q1'] == 5
-    assert result['q3'] == 5
-    assert result['low'] == 5
-    assert result['high'] == 5
-    assert result['outliers'] == []
+    # 验证会抛出 ValueError 异常
+    with pytest.raises(ValueError, match="输入数组必须包含至少两个元素才能计算箱线图数据"):
+        to_box_data(raw_data)
 
 
 def test_to_box_data_negative_values():

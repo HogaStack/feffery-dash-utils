@@ -9,6 +9,9 @@ def to_box_data(raw_data) -> dict:
 
     Returns:
         dict: 转化结果数据项
+
+    Raises:
+        ValueError: 当输入为空数组或只有一个元素时抛出异常
     """
 
     # 转换为numpy数组
@@ -16,26 +19,11 @@ def to_box_data(raw_data) -> dict:
 
     # 处理空数组的情况
     if len(data) == 0:
-        return {
-            'low': 0,
-            'q1': 0,
-            'median': 0,
-            'q3': 0,
-            'high': 0,
-            'outliers': [],
-        }
+        raise ValueError("输入数组不能为空")
 
     # 处理单个值的情况
     if len(data) == 1:
-        value = data[0]
-        return {
-            'low': value,
-            'q1': value,
-            'median': value,
-            'q3': value,
-            'high': value,
-            'outliers': [],
-        }
+        raise ValueError("输入数组必须包含至少两个元素才能计算箱线图数据")
 
     # 计算四分位数
     q1 = np.percentile(data, 25)
