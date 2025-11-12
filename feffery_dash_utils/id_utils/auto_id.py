@@ -45,6 +45,10 @@ class _UniqueIdEnumMeta(EnumMeta):
                 auto_id_registry[member_value] = (module, name, member_name)
                 processed_members[member_name] = member_value
 
+        # 先移除将要重新定义的键，避免Python 3.11+中的重复定义错误
+        for member_name in processed_members:
+            if member_name in attrs:
+                del attrs[member_name]
         # 更新属性并创建枚举类
         attrs.update(processed_members)
         cls = cast(Type, super().__new__(mcs, name, bases, attrs))
