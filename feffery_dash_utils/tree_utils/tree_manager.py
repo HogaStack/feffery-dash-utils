@@ -295,7 +295,9 @@ class TreeManager:
                         )
                         # 选择性添加
                         if keep_empty_children_node or tmp_children:
-                            delete_result.append({**node, 'children': tmp_children})
+                            delete_result.append(
+                                {**node, 'children': tmp_children}
+                            )
                     else:
                         delete_result.append(node)
             return delete_result

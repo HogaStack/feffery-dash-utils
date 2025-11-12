@@ -9,7 +9,6 @@ from dash.dependencies import Input, Output, State
 from feffery_antd_components import AntdButton, AntdSpace, AntdSelect
 
 
-
 class ButtonType(AutoUniqueIdEnum):
     ADD = Auto
     DELETE = Auto
@@ -290,7 +289,10 @@ def test_dict_id_match_buttons(dash_duo):
 
     # 验证输出更新
     dash_duo.wait_for_element('div[id*="AddAction-BUTTON"]')
-    dash_duo.wait_for_text_to_equal('div[id*="AddAction-BUTTON"]', f'{AddAction.BUTTON.value}按钮点击次数: 1')
+    dash_duo.wait_for_text_to_equal(
+        'div[id*="AddAction-BUTTON"]',
+        f'{AddAction.BUTTON.value}按钮点击次数: 1',
+    )
 
     # 验证没有浏览器错误
     assert dash_duo.get_logs() == [], '浏览器控制台应该没有错误'
