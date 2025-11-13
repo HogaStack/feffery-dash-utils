@@ -2,6 +2,7 @@ import inspect
 from cssutils import parseString
 from typing import Union
 
+
 def style(
     rawCSS: Union[str, None] = None,
     alignContent=None,
@@ -230,7 +231,7 @@ def style(
     wordWrap=None,
     writingMode=None,
     zIndex=None,
-    **kwargs
+    **kwargs,
 ) -> dict:
     """
     Args:
@@ -437,7 +438,7 @@ def style(
         - textJustify: 规定当 text-align 为 "justify" 时使用的对齐方法。  Specifies the justification method used when text-align is "justify"
         - textOrientation: 定义行中的文本方向。  Defines the orientation of characters in a line
         - textOverflow: 规定当文本溢出包含元素时应该发生的情况。  Specifies what should happen when text overflows the containing element
-        - textShadow: 添加文本阴影。  Adds shadow to text 
+        - textShadow: 添加文本阴影。  Adds shadow to text
         - textTransform: 控制文本的大写。  Controls the capitalization of text
         - textUnderlinePosition: 规定使用 text-decoration 属性设置的下划线的位置。  Specifies the position of the underline text decoration
         - top: 规定定位元素的顶端位置。  Specifies the top position of a positioned element
@@ -461,7 +462,7 @@ def style(
         - wordWrap: 允许长的、不能折行的单词换到下一行。  Allows long, unbreakable words to be broken and wrap to the next line
         - writingMode: 规定文本行是水平还是垂直布局。  Specifies whether lines of text are laid out horizontally or vertically
         - zIndex: 设置定位元素的堆叠顺序。  Sets the stack order of a positioned element
-"""
+    """
 
     frame = inspect.currentframe()
     try:
@@ -470,7 +471,12 @@ def style(
             args_dict = dict(argvalues.locals)
             kwargs = args_dict.pop('kwargs', {})
             # 去除None值属性
-            args = {key: value for key, value in args_dict.items() if value is not None and key not in ['rawCSS', 'frame', 'argvalues', 'args_dict']}
+            args = {
+                key: value
+                for key, value in args_dict.items()
+                if value is not None
+                and key not in ['rawCSS', 'frame', 'argvalues', 'args_dict']
+            }
         else:
             # 如果无法获取帧信息，则使用空字典
             args = {}
@@ -486,8 +492,7 @@ def style(
         for rule in css_rules:
             if rule.type == rule.STYLE_RULE:
                 args_from_css = {
-                    css_prop.name: css_prop.value
-                    for css_prop in rule.style
+                    css_prop.name: css_prop.value for css_prop in rule.style
                 }
     # 将args_from_css中的键名格式转换为小驼峰格式
     args_from_css = {

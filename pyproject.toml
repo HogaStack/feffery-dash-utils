@@ -1,3 +1,26 @@
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "feffery_dash_utils"
+version = "0.2.6"
+authors = [
+    {name = "CNFeffery", email = "fefferypzy@gmail.com"},
+]
+description = "A series of tool functions to assist Dash application development."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Framework :: Dash",
+]
+dependencies = [
+    "cssutils",
+    "feffery_antd_components",
+    "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/HogaStack/feffery-dash-utils"
+Repository = "https://github.com/HogaStack/feffery-dash-utils"

@@ -46,7 +46,27 @@ class _UniqueIdEnumMeta(EnumMeta):
                 processed_members[member_name] = member_value
 
         # 更新属性并创建枚举类
-        attrs.update(processed_members)
+        # Python3.10+-版本兼容性处理：清理_member_names并重新添加枚举成员
+        # 清理_member_names中的枚举成员
+        member_names = getattr(attrs, '_member_names', None)
+        if member_names is not None:
+            # Python 3.11及以上中_member_names是字典，Python 3.10及以下中是列表
+            if isinstance(member_names, dict):
+                for member_name in processed_members.keys():
+                    if member_name in member_names:
+                        del member_names[member_name]
+            elif isinstance(member_names, list):
+                # 对于列表，我们需要移除对应的成员名
+                for member_name in processed_members.keys():
+                    while member_name in member_names:
+                        member_names.remove(member_name)
+        # 删除attrs中的枚举成员
+        for member_name in processed_members.keys():
+            if member_name in attrs:
+                del attrs[member_name]
+        # 添加处理后的枚举成员
+        for member_name, member_value in processed_members.items():
+            attrs[member_name] = member_value
         cls = cast(Type, super().__new__(mcs, name, bases, attrs))
 
         return cls

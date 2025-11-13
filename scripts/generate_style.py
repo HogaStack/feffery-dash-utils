@@ -13,17 +13,13 @@ page.get('https://www.w3school.com.cn/cssref/index.asp')
 
 raw_texts = [
     item.raw_text
-    for item in page.eles(
-        'xpath://table[@class="dataintable"]//td'
-    )
+    for item in page.eles('xpath://table[@class="dataintable"]//td')
 ]
 
 # 构造中文css常用属性字典
 zh_cn_styles = {
     name: description
-    for name, description in zip(
-        raw_texts[:-1:2], raw_texts[1::2]
-    )
+    for name, description in zip(raw_texts[:-1:2], raw_texts[1::2])
 }
 
 # 访问英文目标页面
@@ -31,27 +27,20 @@ page.get('https://www.w3schools.com/cssref/index.php')
 
 raw_texts = [
     item.raw_text
-    for item in page.eles(
-        'xpath://table[contains(@class, "ws-table-all")]//td'
-    )
+    for item in page.eles('xpath://table[contains(@class, "ws-table-all")]//td')
 ]
 
 # 构造英文css常用属性字典
 en_us_styles = {
     name: description
-    for name, description in zip(
-        raw_texts[:-1:2], raw_texts[1::2]
-    )
+    for name, description in zip(raw_texts[:-1:2], raw_texts[1::2])
 }
 
 
 # 合并中英文css常用属性字典
 styles = {
     ''.join(
-        [
-            s if i == 0 else s.capitalize()
-            for i, s in enumerate(key.split('-'))
-        ]
+        [s if i == 0 else s.capitalize() for i, s in enumerate(key.split('-'))]
     ): '{}  {}'.format(
         zh_cn_styles[key].replace('\n', ' '),
         re.sub(
@@ -60,9 +49,7 @@ styles = {
             en_us_styles[key].replace('\n', ' '),
         ),
     )
-    for key in (
-        set(zh_cn_styles.keys()) & set(en_us_styles.keys())
-    )
+    for key in (set(zh_cn_styles.keys()) & set(en_us_styles.keys()))
     if re.match(r'[\-a-z]+', key)
 }
 
@@ -119,12 +106,7 @@ def style(
 # 生成<函数参数定义>
 raw_code = raw_code.replace(
     '<函数参数定义>',
-    '\n'.join(
-        [
-            '    {}=None,'.format(key)
-            for key in sorted(styles.keys())
-        ]
-    ),
+    '\n'.join(['    {}=None,'.format(key) for key in sorted(styles.keys())]),
 )
 
 # 生成<函数参数说明>
