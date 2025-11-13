@@ -1,2 +1,2 @@
-dash==3.2.0
+dash>=3.2.0
 feffery_antd_components
